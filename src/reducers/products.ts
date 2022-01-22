@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { LoadingStatus } from '../types/status';
 import { ApplicationState } from '../types/reducer-state';
+import { Product } from '../types/product';
 
 const initialState: ApplicationState = {
     productList: [],
@@ -35,7 +36,39 @@ export const productslice = createSlice({
     }
 });
 
-export const selectProducts = (state: any) => state.products.productList;
+export const selectProducts = (state: any) => {
+    const updatedList: Product [] = state.products?.productList?.map((product: any) => {
+        const models: any = product.modelList.map((model: any) => {
+            const { modelCode, displayName, thumbUrl, thumbUrlAlt, ratings, galleyImage, galleyImageAlt, stockStatusText, usp, promotionPriceDisplay, pviTypeName, pviSubtypeName, ctaLocalText } = model;
+            return {
+                modelCode,
+                displayName,
+                thumbUrl,
+                thumbUrlAlt,
+                ratings,
+                galleyImage,
+                galleyImageAlt,
+                stockStatusText,
+                promotionText: usp,
+                promotionPriceDisplay,
+                productType: pviTypeName,
+                productSubType: pviSubtypeName,
+                buyText: ctaLocalText,
+                chipDetails: {
+                    color: model.fmyChipList[0].fmyChipCode,
+                    memoryText: model.fmyChipList[0].fmyChipType,
+                    memoryDetail: model.fmyChipList[0].fmyChipCode
+                }
+            };
+        });
+        return {
+            title: product.fmyMarketingName,
+            subcategory: product.categorySubTypeEngName,
+            models
+        };
+    });
+    return updatedList;
+};
 export const selectErrorMessage = (state: any) => state.error;
 export const selectStatus = (state: any) => state.status;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import ProductsPage from './components/products-page';
 import PageContent from './components/page-content';
 
 const Wrapper = styled.div`

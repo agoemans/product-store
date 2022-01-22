@@ -1,46 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import ProductCard from './product-card';
+import { Product, Products } from '../types/product';
 
 const Wrapper = styled.div`
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
+  
 `;
 
-const Header = styled.h1`
-    display: flex;
-    flex-direction: column;
-`;
-
-const ProductContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const ProductTitle = styled.h3`
-    display: flex;
-`;
-
-const ModelsContainer = styled.div`
-    display: flex;
-`;
-
-export default function ProductsPage (props: any) {
+export default function ProductsPage (props: Products) {
     const { products } = props;
     return (
         <Wrapper>
-            <Header>{products.map((product: any) => (
-                <ProductContainer key={product.familyId}>
-                    <ProductTitle>
-                        {product.fmyMarketingName}
-                    </ProductTitle>
-                    <div>{product.categorySubTypeEngName}</div>
-                    {product.modelList.map((model: any) => (
-                        <ModelsContainer key={model.modelCode}>{model.displayName}</ModelsContainer>
-                    ))}
-                </ProductContainer>
-            ))}</Header>
+            {products.map((product: Product) => (
+                <ProductCard key={product.title} title={product.title} subcategory={product.subcategory} models={product.models}/>
+            ))}
         </Wrapper>
     );
 }
