@@ -31,7 +31,7 @@
         "space-in-parens": ["error", "never"],
         "semi": ["error", "always"],
         "no-use-before-define": "off",
-        "no-console": "error",
+        "no-console": "off",
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
     }
 }
