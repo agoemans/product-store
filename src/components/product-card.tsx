@@ -84,6 +84,7 @@ const ModelIcon = styled.div`
     width: 20px;    
     margin: 0 5px;
     cursor: pointer;
+    box-shadow: 1px 1px 1px #8ac7f39c;
     &:hover {
       border: 2px solid #0096c7;
     }
