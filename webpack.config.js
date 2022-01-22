@@ -1,7 +1,9 @@
 const path = require('path');
-
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+
+const config = require('./package.json');
 
 module.exports = {
     mode: "development",
@@ -43,7 +45,7 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
+                type: 'asset/resource'
             }
         ]
     },
@@ -56,10 +58,13 @@ module.exports = {
         historyApiFallback: true
     },
     plugins: [
+        new webpack.DefinePlugin({
+            TITLE: JSON.stringify(config.title)
+        }),
         new HtmlWebpackPlugin(
             {
                 template: path.resolve(__dirname, 'templates', 'index.html'),
                 filename: "./index.html"
-            })
+        })
     ]
 };
