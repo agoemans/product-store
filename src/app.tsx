@@ -1,7 +1,8 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import Products from './components/products';
+import ProductsPage from './components/products-page';
+import PageContent from './components/page-content';
 
 const Wrapper = styled.div`
     background-color: white;
@@ -13,7 +14,7 @@ export const App = () => {
     return (
         <Wrapper className='app'>
             <div className='app-content'>
-                <Products/>
+                <PageContent/>
             </div>
         </Wrapper>
     );

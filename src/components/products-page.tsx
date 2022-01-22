@@ -1,9 +1,5 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {
-    fetchProducts, selectProducts
-} from '../reducers';
 
 const Wrapper = styled.div`
     display: flex;
@@ -30,21 +26,8 @@ const ModelsContainer = styled.div`
     display: flex;
 `;
 
-const ButtonContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-`;
-
-const Button = styled.button`
-    display: flex;
-    font-size: 1.5em;
-    width: 40px;
-    height: 40px;
-`;
-
-export default function Products () {
-    const products = useSelector(selectProducts);
-    const dispatch = useDispatch();
+export default function ProductsPage (props: any) {
+    const { products } = props;
     return (
         <Wrapper>
             <Header>{products.map((product: any) => (
@@ -58,9 +41,6 @@ export default function Products () {
                     ))}
                 </ProductContainer>
             ))}</Header>
-            <ButtonContainer>
-                <Button aria-label="Fetch data" onClick={() => dispatch(fetchProducts())}>FETCH</Button>
-            </ButtonContainer>
         </Wrapper>
     );
 }
