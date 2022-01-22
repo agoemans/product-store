@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-  
+    justify-content: center;
 `;
 
 export default function ProductsPage (props: Products) {

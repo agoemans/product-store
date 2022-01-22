@@ -56,8 +56,8 @@ export const selectProducts = (state: any) => {
                 buyText: ctaLocalText,
                 chipDetails: {
                     color: model.fmyChipList[0].fmyChipCode,
-                    memoryText: model.fmyChipList[0].fmyChipType,
-                    memoryDetail: model.fmyChipList[0].fmyChipCode
+                    memoryText: model.fmyChipList[1]?.fmyChipType,
+                    memoryDetail: model.fmyChipList[1]?.fmyChipCode
                 }
             };
         });

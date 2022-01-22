@@ -8,7 +8,10 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    box-shadow: 2px 2px 2px #8f8f8f3b;
+    box-shadow: 2px 2px 6px #8f8f8f3b;
+    width: 500px;
+    height: 500px;
+    margin: 10px;
 `;
 
 const HeaderContainer = styled.div`
@@ -22,6 +25,7 @@ const Title = styled.h2`
     font-family: 'Heebo', sans-serif;
     font-size: 32px;
     margin-bottom: 4px;
+    border-bottom: 1px solid #ced4da8a;
 `;
 
 const SubCategory = styled.div`
@@ -35,12 +39,15 @@ const MiddleContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 360px;    
 `;
 
 const RightPanel = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
+    height: 80%;
+    justify-content: space-evenly;
 `;
 
 const LeftPanel = styled.div`
@@ -63,6 +70,9 @@ const ModelIconContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 260px;
+    min-height: 52px
 `;
 
 const ModelIcon = styled.div`
@@ -71,12 +81,19 @@ const ModelIcon = styled.div`
     border-radius: 50%;
     box-sizing: border-box;
     height: 20px;
-    width: 20px;
+    width: 20px;    
     margin: 0 5px;
     cursor: pointer;
     &:hover {
-      border: 1px solid #6b705c;
+      border: 2px solid #0096c7;
     }
+`;
+
+const MemoryText = styled.div`
+    display: flex;
+    font-family: 'Heebo', sans-serif;
+    font-size: 32px;
+    color: #d00000;
 `;
 
 const PriceContainer = styled.div`
@@ -108,11 +125,6 @@ const PriceText = styled.div`
     text-shadow: 1px 1px 1px #023e8a85;
 `;
 
-const PromotionText = styled.div`
-    display: flex;
-    align-items: center;
-`;
-
 const LearnMoreContainer = styled.div`
     display: flex;
     align-items: center;
@@ -139,13 +151,16 @@ const LearnMoreBtn = styled.button`
 export default function ProductCard (props: Product) {
     const { title, subcategory, models } = props;
     const [imageUrl, setImageUrl] = useState('');
-    const [promotionTexts, setPromotionTexts] = useState([]);
     const [price, setPrice] = useState('');
     const [buyNowText, setBuyNowText] = useState('');
+    const [memoryDetail, setMemoryDetail] = useState('');
 
     useEffect(() => {
-        setImageUrl(models[0].thumbUrl);
-        console.log('what is this', imageUrl, models);
+        const model: Model = models[0];
+        setImageUrl(model.thumbUrl);
+        setPrice(model.promotionPriceDisplay);
+        setBuyNowText(model.buyText);
+        setMemoryDetail(model.chipDetails.memoryDetail);
     }, [setImageUrl]);
 
     return (
@@ -160,21 +175,18 @@ export default function ProductCard (props: Product) {
                     <ModelIconContainer>
                         {models.map((model: Model) =>
                             <ModelIcon key={model.modelCode}
-                                       style={{ backgroundColor: `${model.chipDetails.color}` }}
-                                       onClick={() => {
-                                           setImageUrl(model.thumbUrl);
-                                           setPromotionTexts(model.promotionText);
-                                           setPrice(model.promotionPriceDisplay);
-                                           setBuyNowText(model.buyText);
-                                       }}
+                                style={{ backgroundColor: `${model.chipDetails.color}` }}
+                                onClick={() => {
+                                    setImageUrl(model.thumbUrl);
+                                    setPrice(model.promotionPriceDisplay);
+                                    setBuyNowText(model.buyText);
+                                }}
                             />
                         )}
                     </ModelIconContainer>
                 </LeftPanel>
                 <RightPanel>
-                    {/*{promotionTexts.map((promotionText: string, idx: number) =>*/}
-                    {/*    <PromotionText key={`promotion-text-${idx}`}>{promotionText}</PromotionText>*/}
-                    {/*)}*/}
+                    <MemoryText>{memoryDetail}</MemoryText>
                     <PriceContainer>
                         <BuyNowText>{buyNowText}</BuyNowText>
                         <PriceText>{price}</PriceText>

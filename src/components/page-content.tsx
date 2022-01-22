@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import {
     fetchProducts,
     selectProducts,
-    selectErrorMessage,
     selectStatus
 } from '../reducers';
-import { LoadingStatus } from '../types/status';
 import ProductsPage from './products-page';
 
 const Wrapper = styled.div`
