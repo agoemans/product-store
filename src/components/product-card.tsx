@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Product } from '../types/product';
 import { Model } from '../types/model';
@@ -150,11 +151,12 @@ const LearnMoreBtn = styled.button`
 `;
 
 export default function ProductCard (props: Product) {
-    const { title, subcategory, models } = props;
+    const { title, subcategory, models, familyId } = props;
     const [imageUrl, setImageUrl] = useState('');
     const [price, setPrice] = useState('');
     const [buyNowText, setBuyNowText] = useState('');
     const [memoryDetail, setMemoryDetail] = useState('');
+    const [modelCode, setModelCode] = useState('');
 
     useEffect(() => {
         const model: Model = models[0];
@@ -162,6 +164,7 @@ export default function ProductCard (props: Product) {
         setPrice(model.promotionPriceDisplay);
         setBuyNowText(model.buyText);
         setMemoryDetail(model.chipDetails.memoryDetail);
+        setModelCode(model.modelCode);
     }, [setImageUrl]);
 
     return (
@@ -181,6 +184,8 @@ export default function ProductCard (props: Product) {
                                     setImageUrl(model.thumbUrl);
                                     setPrice(model.promotionPriceDisplay);
                                     setBuyNowText(model.buyText);
+                                    setModelCode(model.modelCode);
+                                    setMemoryDetail(model.chipDetails.memoryDetail);
                                 }}
                             />
                         )}
@@ -193,7 +198,7 @@ export default function ProductCard (props: Product) {
                         <PriceText>{price}</PriceText>
                     </PriceContainer>
                     <LearnMoreContainer>
-                        <LearnMoreBtn>click to learn more</LearnMoreBtn>
+                        <LearnMoreBtn><Link to={`/model?modelCode=${modelCode}&familyId=${familyId}`} style={{ textDecoration: 'none' }}>click to learn more</Link></LearnMoreBtn>
                     </LearnMoreContainer>
                 </RightPanel>
             </MiddleContainer>

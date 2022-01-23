@@ -1,6 +1,6 @@
 ### Layout / plan
 
-Each card will have:
+Each Product card will have:
 - Image
 - list of model colors under image
 - price
@@ -8,6 +8,19 @@ Each card will have:
 - Buy now button
 - usp has the display text for promotional text
 
+Each model page will have:
+- Title
+- reviews underneath
+- Left panel:
+  - main image
+  - bar underneath with galley images
+- Right panel
+  - kleur
+  - model list
+  - memory
+  - usp list
+  - price (totally and money)
+  - buy now button
 
 ### Todo:
 

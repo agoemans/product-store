@@ -39,31 +39,39 @@ export const productslice = createSlice({
 export const selectProducts = (state: any) => {
     const updatedList: Product [] = state.products?.productList?.map((product: any) => {
         const models: any = product.modelList.map((model: any) => {
-            const { modelCode, displayName, thumbUrl, thumbUrlAlt, ratings, galleyImage, galleyImageAlt, stockStatusText, usp, promotionPriceDisplay, pviTypeName, pviSubtypeName, ctaLocalText } = model;
+            const { modelCode, displayName, thumbUrl, thumbUrlAlt, ratings, reviewCount, galleryImage, galleryImageAlt, stockStatusText, usp, promotionPriceDisplay, pviTypeName, pviSubtypeName, ctaEngText } = model;
             return {
                 modelCode,
                 displayName,
                 thumbUrl,
                 thumbUrlAlt,
-                ratings,
-                galleyImage,
-                galleyImageAlt,
+                ratings: Math.round(ratings * 10) / 10,
+                reviewCount,
+                galleryImage,
+                galleryImageAlt,
                 stockStatusText,
                 promotionText: usp,
                 promotionPriceDisplay,
                 productType: pviTypeName,
                 productSubType: pviSubtypeName,
-                buyText: ctaLocalText,
+                buyText: ctaEngText,
                 chipDetails: {
+                    colorLabel: model.fmyChipList[0].fmyChipType,
+                    colorName: model.fmyChipList[0].fmyChipLocalName,
                     color: model.fmyChipList[0].fmyChipCode,
                     memoryText: model.fmyChipList[1]?.fmyChipType,
-                    memoryDetail: model.fmyChipList[1]?.fmyChipCode
+                    memoryDetail: model.fmyChipList[1]?.fmyChipLocalName
+                },
+                monthlyPriceInfo: {
+                	monthlyPrice: model.monthlyPriceInfo?.leasingMonthly,
+                    numOfMonths: model.monthlyPriceInfo?.leasingMonths
                 }
             };
         });
         return {
             title: product.fmyMarketingName,
             subcategory: product.categorySubTypeEngName,
+            familyId: product.familyId,
             models
         };
     });

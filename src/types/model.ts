@@ -4,8 +4,9 @@ export interface Model {
     thumbUrl: string;
     thumbUrlAlt: string;
     ratings: string;
-    galleyImage: string [];
-    galleyImageAlr: string [];
+	reviewCount: string;
+    galleryImage: string [];
+    galleryImageAlt: string [];
     stockStatusText: string;
     promotionText: string[];
     promotionPriceDisplay: string;
@@ -13,6 +14,7 @@ export interface Model {
     productSubType: string;
     buyText: string;
     chipDetails: ChipDetails;
+	monthlyPriceInfo: MonthlyPriceInfo;
 }
 
 export interface Models {
@@ -20,7 +22,14 @@ export interface Models {
 }
 
 export interface ChipDetails {
+	colorLabel: string;
+	colorName: string;
     color: string;
     memoryText: string;
     memoryDetail: string;
+}
+
+export interface MonthlyPriceInfo {
+	monthlyPrice: string;
+	numOfMonths: string;
 }

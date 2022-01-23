@@ -15,7 +15,7 @@ export default function ProductsPage (props: Products) {
     return (
         <Wrapper>
             {products.map((product: Product) => (
-                <ProductCard key={product.title} title={product.title} subcategory={product.subcategory} models={product.models}/>
+                <ProductCard key={product.title} title={product.title} subcategory={product.subcategory} familyId={product.familyId} models={product.models}/>
             ))}
         </Wrapper>
     );
