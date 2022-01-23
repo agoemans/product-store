@@ -7,7 +7,7 @@ export interface Model {
 	reviewCount: string;
     galleryImage: string [];
     galleryImageAlt: string [];
-    stockStatusText: string;
+    ctaType: string;
     promotionText: string[];
     promotionPriceDisplay: string;
     productType: string;

@@ -39,7 +39,7 @@ export const productslice = createSlice({
 export const selectProducts = (state: any) => {
 	const updatedList: Product [] = state.products?.productList?.map((product: any) => {
 		const models: any = product.modelList.map((model: any) => {
-			const { modelCode, displayName, thumbUrl, thumbUrlAlt, ratings, reviewCount, galleryImage, galleryImageAlt, stockStatusText, usp, promotionPriceDisplay, pviTypeName, pviSubtypeName, ctaEngText } = model;
+			const { modelCode, displayName, thumbUrl, thumbUrlAlt, ratings, reviewCount, galleryImage, galleryImageAlt, ctaType, usp, promotionPriceDisplay, pviTypeName, pviSubtypeName, ctaEngText } = model;
 			return {
 				modelCode,
 				displayName,
@@ -49,7 +49,7 @@ export const selectProducts = (state: any) => {
 				reviewCount,
 				galleryImage,
 				galleryImageAlt,
-				stockStatusText,
+				ctaType,
 				promotionText: usp,
 				promotionPriceDisplay,
 				productType: pviTypeName,

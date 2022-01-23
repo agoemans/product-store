@@ -85,7 +85,7 @@ const ModelIcon = styled.div`
     width: 20px;    
     margin: 0 5px;
     cursor: pointer;
-    box-shadow: 1px 1px 1px #8ac7f39c;
+    box-shadow: 2px 1px 1px #274d6861;
     &:hover {
       border: 2px solid #0096c7;
     }
@@ -95,7 +95,7 @@ const MemoryText = styled.div`
     display: flex;
     font-family: 'Heebo', sans-serif;
     font-size: 32px;
-    color: #d00000;
+    color: #343a40;
 `;
 
 const PriceContainer = styled.div`
@@ -107,7 +107,7 @@ const PriceContainer = styled.div`
     width: 100px;    
     background-color: #0096c7;
     justify-content: center;
-    box-shadow: 2px 2px 4px #023e8a8c;  
+    box-shadow: 2px 2px 4px #023e8a8c;
 `;
 
 const BuyNowText = styled.div`
@@ -116,6 +116,21 @@ const BuyNowText = styled.div`
     font-size: 18px;    
     color: #caf0f8;
     text-shadow: 1px 1px 1px #023e8a85;
+`;
+
+const OutOfStockText = styled.div`
+	display: flex;
+	font-family: 'Heebo', sans-serif;
+	font-size: 18px;
+	background-color: #d90429;
+	color: white;
+	height: 40px;
+	width: 150px;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	border-radius: 5px;
+	text-shadow: 1px 1px 1px #023e8a85;
 `;
 
 const PriceText = styled.div`
@@ -157,6 +172,7 @@ export default function ProductCard (props: Product) {
 	const [buyNowText, setBuyNowText] = useState('');
 	const [memoryDetail, setMemoryDetail] = useState('');
 	const [modelCode, setModelCode] = useState('');
+	const [stockStatus, setStockStatus] = useState(true);
 
 	useEffect(() => {
 		const model: Model = models[0];
@@ -165,6 +181,8 @@ export default function ProductCard (props: Product) {
 		setBuyNowText(model.buyText);
 		setMemoryDetail(model.chipDetails.memoryDetail);
 		setModelCode(model.modelCode);
+		console.log('ctaType', model.ctaType);
+		setStockStatus(model.ctaType === 'inStock');
 	}, [setImageUrl]);
 
 	return (
@@ -186,6 +204,7 @@ export default function ProductCard (props: Product) {
 									setBuyNowText(model.buyText);
 									setModelCode(model.modelCode);
 									setMemoryDetail(model.chipDetails.memoryDetail);
+									setStockStatus(model.ctaType === 'inStock');
 								}}
 							/>
 						)}
@@ -193,10 +212,14 @@ export default function ProductCard (props: Product) {
 				</LeftPanel>
 				<RightPanel>
 					<MemoryText>{memoryDetail}</MemoryText>
-					<PriceContainer>
-						<BuyNowText>{buyNowText}</BuyNowText>
-						<PriceText>{price}</PriceText>
-					</PriceContainer>
+					{stockStatus === false ?
+						<OutOfStockText>Out Of Stock!</OutOfStockText>
+						: <PriceContainer>
+							<BuyNowText>{buyNowText}</BuyNowText>
+							<PriceText>{price}</PriceText>
+						</PriceContainer>
+					}
+
 					<LearnMoreContainer>
 						<LearnMoreBtn><Link to={`/model?modelCode=${modelCode}&familyId=${familyId}`} style={{ textDecoration: 'none' }}>click to learn more</Link></LearnMoreBtn>
 					</LearnMoreContainer>

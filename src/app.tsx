@@ -7,6 +7,7 @@ import {
 import styled from 'styled-components';
 import PageContent from './components/page-content';
 import ModelPage from './components/model-page';
+import PageHeader from './components/page-header';
 
 const Wrapper = styled.div`
     background-color: white;
@@ -19,6 +20,7 @@ export const App = () => {
 		<Router>
 			<Wrapper className='app'>
 				<div className='app-content'>
+					<PageHeader/>
 					<Switch>
 						<Route path='/model'>
 							<ModelPage/>
