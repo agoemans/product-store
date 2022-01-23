@@ -39,9 +39,11 @@ Each model page will have:
 - show loader when loading status = loading
 - fix the body padding (the top bar's margin etc must be reset)
 - toggle button if out of stock (in stock, show buy button, out of stock, show out of stock text)
-Currently, depending on ctaType to say if item is in stock or not
-- 
+Currently, depending on ctaType to say if item is in stock or not 
+- Clean up the styled components (there are repeated ones that can be combined)
+- Also divide some entities into separate components (e.g. buy button)
 
 #### Webpack
 - fix watch (need to look up watch for dev server for webpack 5)
 - align prettier and eslint, currently a bit of mess
+- set up prod build (so that it is bundled correctly)
