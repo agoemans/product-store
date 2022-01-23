@@ -40,3 +40,4 @@ Each model page will have:
 
 #### Webpack
 - fix watch (need to look up watch for dev server for webpack 5)
+- align prettier and eslint

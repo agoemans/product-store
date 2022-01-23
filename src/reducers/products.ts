@@ -63,7 +63,7 @@ export const selectProducts = (state: any) => {
 					memoryDetail: model.fmyChipList[1]?.fmyChipLocalName
 				},
 				monthlyPriceInfo: {
-                	monthlyPrice: model.monthlyPriceInfo?.leasingMonthly,
+					monthlyPrice: model.monthlyPriceInfo?.leasingMonthly,
 					numOfMonths: model.monthlyPriceInfo?.leasingMonths
 				}
 			};
@@ -72,7 +72,13 @@ export const selectProducts = (state: any) => {
 			title: product.fmyMarketingName,
 			subcategory: product.categorySubTypeEngName,
 			familyId: product.familyId,
-			models
+			models,
+			chipOptions: product.chipOptions[1]?.optionList.map((chipOption: any) => {
+				return { name: chipOption.optionLocalName, type: chipOption.optionCode };
+			}),
+			chipColors: product.chipOptions[0]?.optionList.map((chipOption: any) => {
+				return { name: chipOption.optionLocalName, color: chipOption.optionCode };
+			})
 		};
 	});
 	return updatedList;
