@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    Switch,
-    Route,
-    BrowserRouter as Router
+	Switch,
+	Route,
+	BrowserRouter as Router
 } from 'react-router-dom';
 import styled from 'styled-components';
 import PageContent from './components/page-content';
@@ -15,21 +15,21 @@ const Wrapper = styled.div`
 `;
 
 export const App = () => {
-    return (
-        <Router>
-            <Wrapper className='app'>
-                <div className='app-content'>
-                    <Switch>
-                        <Route path='/model'>
-                            <ModelPage/>
-                        </Route>
-                        <Route path='/'>
-                            <PageContent/>
-                        </Route>
-                    </Switch>
+	return (
+		<Router>
+			<Wrapper className='app'>
+				<div className='app-content'>
+					<Switch>
+						<Route path='/model'>
+							<ModelPage/>
+						</Route>
+						<Route path='/'>
+							<PageContent/>
+						</Route>
+					</Switch>
 
-                </div>
-            </Wrapper>
-        </Router>
-    );
+				</div>
+			</Wrapper>
+		</Router>
+	);
 };

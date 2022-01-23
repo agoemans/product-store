@@ -151,57 +151,57 @@ const LearnMoreBtn = styled.button`
 `;
 
 export default function ProductCard (props: Product) {
-    const { title, subcategory, models, familyId } = props;
-    const [imageUrl, setImageUrl] = useState('');
-    const [price, setPrice] = useState('');
-    const [buyNowText, setBuyNowText] = useState('');
-    const [memoryDetail, setMemoryDetail] = useState('');
-    const [modelCode, setModelCode] = useState('');
+	const { title, subcategory, models, familyId } = props;
+	const [imageUrl, setImageUrl] = useState('');
+	const [price, setPrice] = useState('');
+	const [buyNowText, setBuyNowText] = useState('');
+	const [memoryDetail, setMemoryDetail] = useState('');
+	const [modelCode, setModelCode] = useState('');
 
-    useEffect(() => {
-        const model: Model = models[0];
-        setImageUrl(model.thumbUrl);
-        setPrice(model.promotionPriceDisplay);
-        setBuyNowText(model.buyText);
-        setMemoryDetail(model.chipDetails.memoryDetail);
-        setModelCode(model.modelCode);
-    }, [setImageUrl]);
+	useEffect(() => {
+		const model: Model = models[0];
+		setImageUrl(model.thumbUrl);
+		setPrice(model.promotionPriceDisplay);
+		setBuyNowText(model.buyText);
+		setMemoryDetail(model.chipDetails.memoryDetail);
+		setModelCode(model.modelCode);
+	}, [setImageUrl]);
 
-    return (
-        <Wrapper>
-            <HeaderContainer>
-                <Title>{title}</Title>
-                <SubCategory>{subcategory}</SubCategory>
-            </HeaderContainer>
-            <MiddleContainer>
-                <LeftPanel>
-                    <BgImageContainer style={{ backgroundImage: `url('https:${imageUrl}')` }}/>
-                    <ModelIconContainer>
-                        {models.map((model: Model) =>
-                            <ModelIcon key={model.modelCode}
-                                style={{ backgroundColor: `${model.chipDetails.color}` }}
-                                onClick={() => {
-                                    setImageUrl(model.thumbUrl);
-                                    setPrice(model.promotionPriceDisplay);
-                                    setBuyNowText(model.buyText);
-                                    setModelCode(model.modelCode);
-                                    setMemoryDetail(model.chipDetails.memoryDetail);
-                                }}
-                            />
-                        )}
-                    </ModelIconContainer>
-                </LeftPanel>
-                <RightPanel>
-                    <MemoryText>{memoryDetail}</MemoryText>
-                    <PriceContainer>
-                        <BuyNowText>{buyNowText}</BuyNowText>
-                        <PriceText>{price}</PriceText>
-                    </PriceContainer>
-                    <LearnMoreContainer>
-                        <LearnMoreBtn><Link to={`/model?modelCode=${modelCode}&familyId=${familyId}`} style={{ textDecoration: 'none' }}>click to learn more</Link></LearnMoreBtn>
-                    </LearnMoreContainer>
-                </RightPanel>
-            </MiddleContainer>
-        </Wrapper>
-    );
+	return (
+		<Wrapper>
+			<HeaderContainer>
+				<Title>{title}</Title>
+				<SubCategory>{subcategory}</SubCategory>
+			</HeaderContainer>
+			<MiddleContainer>
+				<LeftPanel>
+					<BgImageContainer style={{ backgroundImage: `url('https:${imageUrl}')` }}/>
+					<ModelIconContainer>
+						{models.map((model: Model) =>
+							<ModelIcon key={model.modelCode}
+								style={{ backgroundColor: `${model.chipDetails.color}` }}
+								onClick={() => {
+									setImageUrl(model.thumbUrl);
+									setPrice(model.promotionPriceDisplay);
+									setBuyNowText(model.buyText);
+									setModelCode(model.modelCode);
+									setMemoryDetail(model.chipDetails.memoryDetail);
+								}}
+							/>
+						)}
+					</ModelIconContainer>
+				</LeftPanel>
+				<RightPanel>
+					<MemoryText>{memoryDetail}</MemoryText>
+					<PriceContainer>
+						<BuyNowText>{buyNowText}</BuyNowText>
+						<PriceText>{price}</PriceText>
+					</PriceContainer>
+					<LearnMoreContainer>
+						<LearnMoreBtn><Link to={`/model?modelCode=${modelCode}&familyId=${familyId}`} style={{ textDecoration: 'none' }}>click to learn more</Link></LearnMoreBtn>
+					</LearnMoreContainer>
+				</RightPanel>
+			</MiddleContainer>
+		</Wrapper>
+	);
 }

@@ -11,12 +11,12 @@ const Wrapper = styled.div`
 `;
 
 export default function ProductsPage (props: Products) {
-    const { products } = props;
-    return (
-        <Wrapper>
-            {products.map((product: Product) => (
-                <ProductCard key={product.title} title={product.title} subcategory={product.subcategory} familyId={product.familyId} models={product.models}/>
-            ))}
-        </Wrapper>
-    );
+	const { products } = props;
+	return (
+		<Wrapper>
+			{products.map((product: Product) => (
+				<ProductCard key={product.title} title={product.title} subcategory={product.subcategory} familyId={product.familyId} models={product.models}/>
+			))}
+		</Wrapper>
+	);
 }

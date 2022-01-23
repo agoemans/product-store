@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {
-    fetchProducts,
-    selectProducts,
-    selectStatus
+	fetchProducts,
+	selectProducts,
+	selectStatus
 } from '../reducers';
 import ProductsPage from './products-page';
 
@@ -15,17 +15,17 @@ const Wrapper = styled.div`
 `;
 
 export default function PageContent () {
-    const products = useSelector(selectProducts);
-    const dispatch = useDispatch();
-    const status = useSelector(selectStatus);
+	const products = useSelector(selectProducts);
+	const dispatch = useDispatch();
+	const status = useSelector(selectStatus);
 
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [status, dispatch]);
+	useEffect(() => {
+		dispatch(fetchProducts());
+	}, [status, dispatch]);
 
-    return (
-        <Wrapper>
-            <ProductsPage products={products}/>;
-        </Wrapper>
-    );
+	return (
+		<Wrapper>
+			<ProductsPage products={products}/>;
+		</Wrapper>
+	);
 }
